@@ -36,4 +36,12 @@ jobs:
           MODEL_NAME: ${{ secrets.MODEL_NAME }}
           LANGUAGE: ${{ vars.LANGUAGE }}
         run: |
-          uv run main.py --debug
+          # uv run main.py --debug
+          # 检查文件是否存在（保险起见）
+          if [ -f "src/zotero_arxiv_daily/main.py" ]; then
+            echo "Found main.py, starting execution..."
+            uv run src/zotero_arxiv_daily/main.py
+          else
+            echo "Error: main.py not found at expected path!"
+            exit 1
+          fi
