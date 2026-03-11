@@ -13,7 +13,6 @@ jobs:
         with:
           repository: ${{ vars.REPOSITORY }}
           ref: ${{ vars.REF }}
-          path: repo_code  # 强制同步到当前根目录
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v3
@@ -39,4 +38,11 @@ jobs:
           MODEL_NAME: ${{ secrets.MODEL_NAME }}
           LANGUAGE: ${{ vars.LANGUAGE }}
         run: |
+          echo "--- Current Directory ---"
+          pwd
+          echo "--- File List ---"
+          ls -R
+          echo "--- Environment Check ---"
+          uv run --version
+          python3 --version
           uv run main.py
