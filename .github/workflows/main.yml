@@ -13,6 +13,7 @@ jobs:
         with:
           repository: ${{ vars.REPOSITORY }}
           ref: ${{ vars.REF }}
+          path: .  # 强制同步到当前根目录
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v3
